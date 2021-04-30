@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ValidationRules\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MFC.Blog.DataAccess\MFC.Blog.DataAccess.csproj" />
+    <ProjectReference Include="..\MFC.Blog.Entities\MFC.Blog.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
