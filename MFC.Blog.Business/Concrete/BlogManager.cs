@@ -15,5 +15,10 @@ namespace MFC.Blog.Business.Concrete
         {
             _genericDal = genericDal;
         }
+
+        public async Task<List<Entities.Concrete.Blog>> GetAllSortedByPostedTimeAsync()
+        {
+            return await _genericDal.GetAllAsync(I=>I.PostedTime);
+        }
     }
 }

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFC.Blog.DataAccess", "MFC.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFC.Blog.Business", "MFC.Blog.Business\MFC.Blog.Business.csproj", "{9EAD1172-5453-448C-B6D1-F8412C8183E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFC.Blog.WebApi", "MFC.Blog.WebApi\MFC.Blog.WebApi.csproj", "{3A233A22-3045-4352-8EAE-6C3D4F2B9FEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9EAD1172-5453-448C-B6D1-F8412C8183E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EAD1172-5453-448C-B6D1-F8412C8183E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EAD1172-5453-448C-B6D1-F8412C8183E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A233A22-3045-4352-8EAE-6C3D4F2B9FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A233A22-3045-4352-8EAE-6C3D4F2B9FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A233A22-3045-4352-8EAE-6C3D4F2B9FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A233A22-3045-4352-8EAE-6C3D4F2B9FEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

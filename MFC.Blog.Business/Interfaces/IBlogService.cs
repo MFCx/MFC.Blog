@@ -9,6 +9,6 @@ namespace MFC.Blog.Business.Interfaces
 {
     public interface IBlogService:IGenericService<Entities.Concrete.Blog>
     {
-        
+        Task<List<Entities.Concrete.Blog>> GetAllSortedByPostedTimeAsync();
     }
 }

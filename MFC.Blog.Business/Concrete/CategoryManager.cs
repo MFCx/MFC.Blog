@@ -16,5 +16,10 @@ namespace MFC.Blog.Business.Concrete
         {
             _genericDal = genericDal;
         }
+
+        public async Task<List<Category>> GetAllSortedById()
+        {
+            return await _genericDal.GetAllAsync(I => I.Id);
+        }
     }
 }
