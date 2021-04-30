@@ -69,5 +69,12 @@ namespace MFC.Blog.DataAccess.Concrete.EntityFrameworkCore.Repositories
             context.Remove(entity);
             await context.SaveChangesAsync();
         }
+
+        public async Task<TEntity> FindByIdAsync(int id)
+        {
+            using var context = new MFCBlogContext();
+            return await context.FindAsync<TEntity>(id);
+        }
+    
     }
 }

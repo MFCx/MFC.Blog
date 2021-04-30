@@ -21,6 +21,7 @@ namespace MFC.Blog.DataAccess.Interfaces
         Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task RemoveAsync(TEntity entity);
+        Task<TEntity> FindByIdAsync(int id);
 
     }
 }
