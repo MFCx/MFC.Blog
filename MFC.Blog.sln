@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFC.Blog.Entities", "MFC.Blog.Entities\MFC.Blog.Entities.csproj", "{FFE8A60F-F073-491B-803A-4C443F3338EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFC.Blog.DataAccess", "MFC.Blog.DataAccess\MFC.Blog.DataAccess.csproj", "{BA589D79-74CB-448D-B649-856CE0105816}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFE8A60F-F073-491B-803A-4C443F3338EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE8A60F-F073-491B-803A-4C443F3338EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE8A60F-F073-491B-803A-4C443F3338EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE8A60F-F073-491B-803A-4C443F3338EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA589D79-74CB-448D-B649-856CE0105816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA589D79-74CB-448D-B649-856CE0105816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA589D79-74CB-448D-B649-856CE0105816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA589D79-74CB-448D-B649-856CE0105816}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA653144-E2B9-492C-8C79-C79825333F67}
+	EndGlobalSection
+EndGlobal
