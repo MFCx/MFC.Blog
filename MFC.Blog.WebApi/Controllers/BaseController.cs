@@ -14,7 +14,7 @@ namespace MFC.Blog.WebApi.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        public async Task<UploadModel> Upload(IFormFile file, string contentType)
+        public async Task<UploadModel> UploadFileAsync(IFormFile file, string contentType)
         {
             UploadModel uploadModel = new UploadModel();
             if (file != null)
@@ -29,7 +29,7 @@ namespace MFC.Blog.WebApi.Controllers
                 {
 
                     var newName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img" + newName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/" + newName);
                     var stream = new FileStream(path, FileMode.Create);
                     await file.CopyToAsync(stream);
                     uploadModel.NewName = newName;
@@ -38,8 +38,9 @@ namespace MFC.Blog.WebApi.Controllers
                 }
                 uploadModel.ErrorMessage = "Dosya mevcut değil";
                 uploadModel.UploadState = UploadState.NotExist;
-                return uploadModel;
+               
             }
+            return uploadModel;
         }
     }
 }

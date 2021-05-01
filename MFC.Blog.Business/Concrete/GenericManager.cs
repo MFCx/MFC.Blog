@@ -59,7 +59,7 @@ namespace MFC.Blog.Business.Concrete
             await _genericDal.RemoveAsync(entity);
         }
 
-        public async Task<TEntity> FindById(int id)
+        public async Task<TEntity> FindByIdAsync(int id)
         {
             return await _genericDal.FindByIdAsync(id);
         }
