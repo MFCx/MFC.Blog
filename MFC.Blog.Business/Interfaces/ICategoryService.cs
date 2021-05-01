@@ -9,7 +9,7 @@ namespace MFC.Blog.Business.Interfaces
 {
     public interface ICategoryService:IGenericService<Category>
     {
-        Task<List<Category>> GetAllSortedById();
+        Task<List<Category>> GetAllSortedByIdAsyc();
         //Son eklenen en basa gelecek
     }
 }
