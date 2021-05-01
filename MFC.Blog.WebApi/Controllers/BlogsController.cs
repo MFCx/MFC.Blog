@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -36,18 +37,46 @@ namespace MFC.Blog.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BlogAddModel blogAddModel)
+        public async Task<IActionResult> Create([FromForm]BlogAddModel blogAddModel)
         {
+            if (blogAddModel.Image != null)
+            {
+                if (blogAddModel.Image.ContentType != "image/jpeg")
+                {
+                    return BadRequest("Uygun olmayan dosya türü");
+                }
+
+                var newName = Guid.NewGuid() + Path.GetExtension(blogAddModel.Image.FileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img" + newName);
+                var stream = new FileStream(path, FileMode.Create);
+                await blogAddModel.Image.CopyToAsync(stream);
+                blogAddModel.ImagePath = newName;
+            }
+
             await _blogService.AddAsync(_mapper.Map<Entities.Concrete.Blog>(blogAddModel));
             return Created("", blogAddModel);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, BlogUpdateModel blogUpdateModel)
+        public async Task<IActionResult> Update(int id, [FromForm]BlogUpdateModel blogUpdateModel)
         {
             if (id != blogUpdateModel.Id)
             {
                 return BadRequest("Geçersiz ad");
+
+                if (blogUpdateModel.Image != null)
+                {
+                    if (blogUpdateModel.Image.ContentType != "image/jpeg")
+                    {
+                        return BadRequest("Uygun olmayan dosya türü");
+                    }
+
+                    var newName = Guid.NewGuid() + Path.GetExtension(blogUpdateModel.Image.FileName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img" + newName);
+                    var stream = new FileStream(path, FileMode.Create);
+                    await blogUpdateModel.Image.CopyToAsync(stream);
+                    blogUpdateModel.ImagePath = newName;
+                }
             }
             await _blogService.UpdateAsync(_mapper.Map<Entities.Concrete.Blog>(blogUpdateModel));
             return NoContent();
