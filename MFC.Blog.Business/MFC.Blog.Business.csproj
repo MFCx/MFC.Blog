@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MFC.Blog.DataAccess\MFC.Blog.DataAccess.csproj" />
+    <ProjectReference Include="..\MFC.Blog.DTO\MFC.Blog.DTO.csproj" />
     <ProjectReference Include="..\MFC.Blog.Entities\MFC.Blog.Entities.csproj" />
   </ItemGroup>
 

@@ -30,7 +30,7 @@ namespace MFC.Blog.WebApi
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
                 opt =>
                 {
-                    opt.RequireHttpsMetadata=false,//SSL Sertifamız yok ondan kapatttık,
+                    opt.RequireHttpsMetadata = false;//SSL Sertifamız yok ondan kapatttık,
                     opt.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidIssuer = JwtInfo.Issuer,
