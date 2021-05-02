@@ -10,6 +10,7 @@ using MFC.Blog.Business.Interfaces;
 using MFC.Blog.DTO.DTOs.BlogDtos;
 using MFC.Blog.WebApi.Enums;
 using MFC.Blog.WebApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MFC.Blog.WebApi.Controllers
 {
@@ -38,6 +39,7 @@ namespace MFC.Blog.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromForm] BlogAddModel blogAddModel)
         {
             var uploadModel = await UploadFileAsync(blogAddModel.Image, "image/jpeg");
@@ -60,6 +62,7 @@ namespace MFC.Blog.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Update(int id, [FromForm] BlogUpdateModel blogUpdateModel)
         {
             if (id != blogUpdateModel.Id)
@@ -95,6 +98,7 @@ namespace MFC.Blog.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)//Route dan gelen id mapleneecek
         {
             await _blogService.RemoveAsync(new Entities.Concrete.Blog { Id = id });

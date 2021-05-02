@@ -1,16 +1,15 @@
+﻿using System;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using MFC.Blog.Business.Containers.MicrosoftIoC;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using MFC.Blog.Business.StringInfos;
 
 namespace MFC.Blog.WebApi
 {
@@ -28,9 +27,24 @@ namespace MFC.Blog.WebApi
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddDependencies();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+                opt =>
+                {
+                    opt.RequireHttpsMetadata=false,//SSL Sertifamız yok ondan kapatttık,
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = JwtInfo.Issuer,
+                        ValidAudience = JwtInfo.Audience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtInfo.SecurityKey)),
+                        ValidateLifetime = true,
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ClockSkew=TimeSpan.Zero
+                    };
+                });
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
-                //Json i�inde json
+                //Json içinde json
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
         }
@@ -45,6 +59,7 @@ namespace MFC.Blog.WebApi
 
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
