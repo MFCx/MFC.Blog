@@ -30,6 +30,10 @@ namespace MFC.Blog.Business.Containers.MicrosoftIoC
 
 
             services.AddScoped<IJwtService, JwtManager>();
+
+
+           
+ 
         }
 
     }

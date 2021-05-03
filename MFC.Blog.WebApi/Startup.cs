@@ -10,6 +10,7 @@ using MFC.Blog.Business.Containers.MicrosoftIoC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MFC.Blog.Business.StringInfos;
+using MFC.Blog.WebApi.CustomFilters;
 
 namespace MFC.Blog.WebApi
 {
@@ -25,9 +26,11 @@ namespace MFC.Blog.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.AddAutoMapper(typeof(Startup));
             services.AddDependencies();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+            services.AddScoped(typeof(ValidId<>));
+           services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
                 opt =>
                 {
                     opt.RequireHttpsMetadata = false;//SSL Sertifamız yok ondan kapatttık,

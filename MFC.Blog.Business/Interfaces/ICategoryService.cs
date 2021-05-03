@@ -11,5 +11,7 @@ namespace MFC.Blog.Business.Interfaces
     {
         Task<List<Category>> GetAllSortedByIdAsyc();
         //Son eklenen en basa gelecek
+
+        Task<List<Category>> GetAllWithCategoryBlogsAsync();
     }
 }

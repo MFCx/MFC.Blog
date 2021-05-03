@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using MFC.Blog.Business.Interfaces;
 using MFC.Blog.Business.Tools.JWTTools;
 using MFC.Blog.DTO.DTOs.AppUserDtos;
+using MFC.Blog.WebApi.CustomFilters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MFC.Blog.WebApi.Controllers
 {
@@ -24,12 +26,13 @@ namespace MFC.Blog.WebApi.Controllers
         }
 
         [HttpPost]
+        [ValidModel]
         public async Task<IActionResult> SingIn(AppUserLoginDto appUserLoginDto)
         {
-            var user = await _appUserService.CheckUser(appUserLoginDto);
+            var user = await _appUserService.CheckUserAsync(appUserLoginDto);
             if (user != null)
             {
-                var token =_jwtService.GenerateJwt(user);
+                var token = _jwtService.GenerateJwt(user);
                 return Created("", token);
 
             }
@@ -38,6 +41,19 @@ namespace MFC.Blog.WebApi.Controllers
                 return BadRequest("kullanıcı adı ve şifre hatalı");
             }
 
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ActiveUser()
+        {
+            var user = await _appUserService.FindByNameAsync(User.Identity.Name);
+
+            return Ok(new AppUserDto
+            {
+                Name=user.Name,
+                SurName=user.SurName
+            });
         }
     }
 }
