@@ -14,6 +14,7 @@ using MFC.Blog.DataAccess.Interfaces;
 using MFC.Blog.DTO.DTOs.AppUserDtos;
 using MFC.Blog.DTO.DTOs.CategoryBlogDtos;
 using MFC.Blog.DTO.DTOs.CategoryDtos;
+using MFC.Blog.DTO.DTOs.Comment;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MFC.Blog.Business.Containers.MicrosoftIoC
@@ -43,10 +44,11 @@ namespace MFC.Blog.Business.Containers.MicrosoftIoC
             services.AddScoped<ICustomLogger, NLogAdapter>();
 
             //Her defasında yeni bir örnek alanması için AddTransient kullandık
-            services.AddTransient<IValidator<AppUserLoginDto>,AppUserLoginValidator>();
+            services.AddTransient<IValidator<AppUserLoginDto>,AppUserLoginValidator>(); ;
             services.AddTransient<IValidator<CategoryAddDto>,CategoryAddValidator>();
             services.AddTransient<IValidator<CategoryBlogDto>,CategoryBlogValidator>();
             services.AddTransient<IValidator<CategoryUpdateDto>,CategoryUpdateValidator>();
+            services.AddTransient<IValidator<CommentAddDto>, CommentAddValidator>();
 
 
 

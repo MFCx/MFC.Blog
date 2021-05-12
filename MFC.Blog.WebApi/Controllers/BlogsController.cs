@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using MFC.Blog.Business.Interfaces;
 using MFC.Blog.DTO.DTOs.BlogDtos;
 using MFC.Blog.DTO.DTOs.CategoryBlogDtos;
@@ -130,7 +131,7 @@ namespace MFC.Blog.WebApi.Controllers
                 return NoContent();
             }
 
-           
+
             else if (uploadModel.UploadState == UploadState.NotExist)
             {
                 var updatedBlog = await _blogService.FindByIdAsync(blogUpdateModel.Id);
@@ -152,15 +153,15 @@ namespace MFC.Blog.WebApi.Controllers
         [ServiceFilter(typeof(ValidId<Entities.Concrete.Blog>))]
         public async Task<IActionResult> Delete(int id)//Route dan gelen id mapleneecek
         {
-            await _blogService.RemoveAsync(new Entities.Concrete.Blog { Id = id });
+            await _blogService.RemoveAsync(await _blogService.FindByIdAsync(id));
             return NoContent();
-        } 
+        }
         [HttpPost("[action]")]
         [ValidModel]
         public async Task<IActionResult> AddToCategory(CategoryBlogDto categoryBlogDto)//Route dan gelen id mapleneecek
         {
             await _blogService.AddToCategoryAsync(categoryBlogDto);
-            return Created("",categoryBlogDto);
+            return Created("", categoryBlogDto);
         }
 
 
@@ -176,7 +177,7 @@ namespace MFC.Blog.WebApi.Controllers
         [ServiceFilter(typeof(ValidId<Category>))]
         public async Task<IActionResult> GetAllByCategoryId(int id)
         {
-            
+
             return Ok(await _blogService.GetAllByCategoryIdAsync(id));
         }
         //blogs/1/categories
@@ -185,7 +186,7 @@ namespace MFC.Blog.WebApi.Controllers
         public async Task<IActionResult> GetCategories(int id)
         {
             return Ok(_mapper.Map<List<CategoryListDto>>(await _blogService.GetCategoriesAsync(id)));
-        } 
+        }
         [HttpGet("[action]")]
         [ServiceFilter(typeof(ValidId<Entities.Concrete.Blog>))]
         public async Task<IActionResult> GetLastFive()
@@ -197,18 +198,28 @@ namespace MFC.Blog.WebApi.Controllers
         public async Task<IActionResult> GetComments([FromRoute] int id, [FromQuery] int? parentCommentId)
         {
             return Ok(_mapper.Map<List<CommentListDto>>(await _commentService.GetAllWithSubCommentsAsync(id, parentCommentId)));
-        }  
+        }
         [HttpGet("[action]")]
-        public async Task<IActionResult> Search([FromQuery]string sentence)
+        public async Task<IActionResult> Search([FromQuery] string sentence)
         {
 
-            var result=_mapper.Map<List<BlogListDto>>(await _blogService.SearchAsync(sentence));
-            if (result.Count>0)
+            var result = _mapper.Map<List<BlogListDto>>(await _blogService.SearchAsync(sentence));
+            if (result.Count > 0)
             {
                 return Ok(result);
             }
 
             return BadRequest("Bulunamadı");
+        }
+        [HttpPost("[action]")]
+        [ValidModel]
+        public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
+        {
+            commentAddDto.PostedTime = DateTime.Now;
+            await _commentService.AddAsync(_mapper.Map<Comment>(commentAddDto));
+
+            return Created("", commentAddDto);
+
         }
     }
 }

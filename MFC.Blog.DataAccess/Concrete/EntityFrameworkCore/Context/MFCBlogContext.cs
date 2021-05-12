@@ -8,7 +8,7 @@ namespace MFC.Blog.DataAccess.Concrete.EntityFrameworkCore.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=DESKTOP-BEAH G3;database=MFCBlogDb ;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+            optionsBuilder.UseSqlServer(@"server=DESKTOP-BEAHAG3;database=MFCBlogDb ;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
             
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
