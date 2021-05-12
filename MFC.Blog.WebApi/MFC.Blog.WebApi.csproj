@@ -15,9 +15,5 @@
     <ProjectReference Include="..\MFC.Blog.DTO\MFC.Blog.DTO.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
 
 </Project>

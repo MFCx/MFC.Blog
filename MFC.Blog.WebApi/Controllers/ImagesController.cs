@@ -10,10 +10,9 @@ namespace MFC.Blog.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  
     public class ImagesController : ControllerBase
     {
-       private readonly IBlogService _blogService;
+        private readonly IBlogService _blogService;
 
         public ImagesController(IBlogService blogService)
         {
@@ -23,12 +22,10 @@ namespace MFC.Blog.WebApi.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetBlogImageById(int id)
         {
-            var blog= await _blogService.FindByIdAsync(id);
+            var blog = await _blogService.FindByIdAsync(id);
             if (string.IsNullOrWhiteSpace(blog.ImagePath))
-            {
-                return NotFound("Resim bulunamadı");
-            }
-            return File($"/img/{blog.ImagePath}","image/jpeg");
+                return NotFound("resim yok");
+            return File($"/img/{blog.ImagePath}", "image/jpeg");
         }
     }
 }

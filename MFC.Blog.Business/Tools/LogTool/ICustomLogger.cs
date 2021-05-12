@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MFC.Blog.WebApi.Enums
+namespace MFC.Blog.Business.Tools.LogTool
 {
-    public enum UploadState
+    public interface ICustomLogger
     {
-         Success=1,
-         Error=2,
-         NotExist=0
+        void LogError(string message);
     }
 }

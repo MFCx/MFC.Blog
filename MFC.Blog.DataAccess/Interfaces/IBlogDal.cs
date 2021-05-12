@@ -9,6 +9,10 @@ namespace MFC.Blog.DataAccess.Interfaces
 {
     public interface IBlogDal:IGenericDal<Entities.Concrete.Blog>
     {
-        
+        Task<List<Entities.Concrete.Blog>> GetAllByCategoryIdAsync(int categoryId);
+        Task<List<Category>> GetCategoriesAsync(int blogId);
+        Task<List<Entities.Concrete.Blog>> GetLastFiveAsync();
+     
+
     }
 }

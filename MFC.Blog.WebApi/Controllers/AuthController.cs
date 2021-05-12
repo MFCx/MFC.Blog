@@ -25,25 +25,20 @@ namespace MFC.Blog.WebApi.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         [ValidModel]
-        public async Task<IActionResult> SingIn(AppUserLoginDto appUserLoginDto)
+        public async Task<IActionResult> SignIn(AppUserLoginDto appUserLoginDto)
         {
             var user = await _appUserService.CheckUserAsync(appUserLoginDto);
             if (user != null)
             {
-                var token = _jwtService.GenerateJwt(user);
-                return Created("", token);
+                return Created("", _jwtService.GenerateJwt(user));
 
             }
-            else
-            {
-                return BadRequest("kullanıcı adı ve şifre hatalı");
-            }
-
+            return BadRequest("kullanıcı adı ve şifre hatalı");
         }
 
-        [HttpPost]
+        [HttpGet("[action]")]
         [Authorize]
         public async Task<IActionResult> ActiveUser()
         {
@@ -51,8 +46,9 @@ namespace MFC.Blog.WebApi.Controllers
 
             return Ok(new AppUserDto
             {
-                Name=user.Name,
-                SurName=user.SurName
+                Id=user.Id,
+                Name = user.Name,
+                SurName = user.SurName,
             });
         }
     }

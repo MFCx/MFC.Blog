@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MFC.Blog.DataAccess.Mapping;
+﻿using MFC.Blog.DataAccess.Mapping;
 using MFC.Blog.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +8,7 @@ namespace MFC.Blog.DataAccess.Concrete.EntityFrameworkCore.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=DESKTOP-BEAHAG3;database=MFCBlogDb ;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+            optionsBuilder.UseSqlServer(@"server=DESKTOP-BEAH G3;database=MFCBlogDb ;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
             
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

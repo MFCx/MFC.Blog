@@ -9,6 +9,6 @@ namespace MFC.Blog.DTO.DTOs.CategoryDtos
 {
     public class CategoryAddDto:IDto
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

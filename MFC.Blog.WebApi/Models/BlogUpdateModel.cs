@@ -17,4 +17,4 @@ namespace MFC.Blog.WebApi.Models
         public IFormFile Image { get; set; }
         public int AppUserId { get; set; }
     }
-}
+} 

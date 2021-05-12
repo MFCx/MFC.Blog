@@ -1,14 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ValidationRules\" />
+    <None Remove="C:\Users\MFC\.nuget\packages\nlog.config\4.7.2\contentFiles\any\any\NLog.config" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="NLog" Version="4.7.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
   </ItemGroup>
 
@@ -16,6 +18,12 @@
     <ProjectReference Include="..\MFC.Blog.DataAccess\MFC.Blog.DataAccess.csproj" />
     <ProjectReference Include="..\MFC.Blog.DTO\MFC.Blog.DTO.csproj" />
     <ProjectReference Include="..\MFC.Blog.Entities\MFC.Blog.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
